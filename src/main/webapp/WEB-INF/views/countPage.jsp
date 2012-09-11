@@ -11,7 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Hello World, ${wisdom}!</h1>
+<p> memeNames ${memeNames}</p>
+
+
+<p>Count ${count}</p>
 </body>
 </html>
 </jsp:root>

@@ -1,21 +1,38 @@
 package com.github.oimdb.oimdbspike.controllers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.oimdb.oimdbspike.domain.Meme;
+import com.github.oimdb.oimdbspike.domain.MemeMedium;
+import com.github.oimdb.oimdbspike.repositories.MemeRepository;
+
 @Controller
 public class FooController {
- 
-  @RequestMapping("/hello")
-  public String helloWorld(Model model) {
+  @Autowired
+  MemeRepository memeRepository;
+  
+	
+  @RequestMapping("/")
+  public String showCount(Model model) throws MalformedURLException {
     //let’s pass some variables to the view script
-    model.addAttribute("wisdom", "Goodbye XML1!!");
- 
-    return "hello"; // renders /WEB-INF/views/hello.jsp
+    
+    Meme randomMeme = new Meme(new Date().toString(),  MemeMedium.VIDEO, new URL("http://youtube.com"), new DateTime() );
+	memeRepository.save(randomMeme);
+    model.addAttribute("count", memeRepository.count());
+    
+    model.addAttribute("memeNames",memeRepository.getAllMemeNames());
+    return "countPage"; // renders /WEB-INF/views/hello.jsp
   }
   
-  @RequestMapping("/")
+  @RequestMapping("/bootstrap")
   public String startPoint(Model model){
 	  return "index";
   }

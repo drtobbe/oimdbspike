@@ -18,6 +18,7 @@ public class Initializer implements WebApplicationInitializer {
 	    AnnotationConfigWebApplicationContext ctx =
 	        new AnnotationConfigWebApplicationContext();
 	    ctx.register(WebappConfig.class);
+	    
 	 
 	    // Add the servlet mapping manually and make it initialize automatically
 	    Dynamic servlet =
