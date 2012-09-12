@@ -4,14 +4,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 
-import javax.ws.rs.POST;
-
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.oimdb.oimdbspike.domain.Meme;
 import com.github.oimdb.oimdbspike.domain.MemeMedium;
@@ -35,8 +34,15 @@ public class FooController {
     return "countPage"; // renders /WEB-INF/views/hello.jsp
   }
   
-  @RequestMapping(value="/input", method=RequestMethod.POST)
-  public String inputNewStuff(Model model) throws MalformedURLException {
+  @RequestMapping(value="/inputpost", method=RequestMethod.POST)
+  public String inputPost ( @RequestParam("memename") String memename, Model model) throws MalformedURLException {
+	  Meme newMeme = new Meme(memename,  MemeMedium.VIDEO, new URL("http://youtube.com"), new DateTime() );
+	  memeRepository.save(newMeme);
+	  return "input"; // renders /WEB-INF/views/hello.jsp
+  }
+  
+  @RequestMapping(value="/input", method=RequestMethod.GET)
+  public String inputGet(Model model) throws MalformedURLException {
     return "input"; // renders /WEB-INF/views/hello.jsp
   }
   

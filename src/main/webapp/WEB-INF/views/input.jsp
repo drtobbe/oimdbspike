@@ -70,7 +70,11 @@
 
         <div class="container">
 
-           
+           <form method="POST" action="inputpost">
+           <p>Meme name</p>
+           <input id="memenameid" name="memename" type="text"/>
+           <input type="submit">
+           </form>
            
 
             <hr>
