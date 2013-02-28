@@ -24,26 +24,29 @@ public class FooController {
 	
   @RequestMapping("/")
   public String showCount(Model model) throws MalformedURLException {
-    //let’s pass some variables to the view script
+    //lets pass some variables to the view script
     
-    Meme randomMeme = new Meme(new Date().toString(),  MemeMedium.VIDEO, new URL("http://youtube.com"), new DateTime() );
-	memeRepository.save(randomMeme);
+    Meme randomMeme = new Meme("meme" + (new Date()).getTime(),  MemeMedium.VIDEO, new URL("http://youtube.com/" + (new Date()).toString()), new DateTime() );
+//	memeRepository.save(randomMeme);
     model.addAttribute("count", memeRepository.count());
     
-    model.addAttribute("memeNames",memeRepository.getAllMemeNames());
+    model.addAttribute("memeNames",memeRepository.getAllMemes());
     return "countPage"; // renders /WEB-INF/views/hello.jsp
   }
   
   @RequestMapping(value="/inputpost", method=RequestMethod.POST)
   public String inputPost ( @RequestParam("memename") String memename, Model model) throws MalformedURLException {
-	  Meme newMeme = new Meme(memename,  MemeMedium.VIDEO, new URL("http://youtube.com"), new DateTime() );
+	  Meme newMeme = new Meme(memename,  MemeMedium.VIDEO, new URL("https://google.com/"+memename), new DateTime() );
 	  memeRepository.save(newMeme);
 	  return "input"; // renders /WEB-INF/views/hello.jsp
   }
   
   @RequestMapping(value="/input", method=RequestMethod.GET)
   public String inputGet(Model model) throws MalformedURLException {
-    return "input"; // renders /WEB-INF/views/hello.jsp
+      model.addAttribute("count", memeRepository.count());
+
+      model.addAttribute("memes",memeRepository.getAllMemes());
+      return "input"; // renders /WEB-INF/views/hello.jsp
   }
   
   @RequestMapping("/bootstrap")
