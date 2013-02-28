@@ -72,14 +72,24 @@
 
            <form method="POST" action="inputpost">
            <p>Meme name</p>
-           <input id="memenameid" name="memename" type="text"/>
+               <input id="memenameid" name="memename" type="text"/>
+               <input id="memeurlid" name="memeurl" type="text"/>
            <input type="submit">
            </form>
 
+            <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+            <table>
+                <c:forEach items="${memes}" var="meme">
+                    <tr>
+                        <td><a href="${meme.url}"/>${meme.name}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
             <hr>
 
             <footer>
-                <p>&copy; Company 2012</p>
+                <p>&copy; Company 2013</p>
             </footer>
 
         </div> <!-- /container -->

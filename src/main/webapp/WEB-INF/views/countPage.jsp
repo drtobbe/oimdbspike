@@ -18,7 +18,7 @@
 
 
 <table>
-    <c:forEach var="meme" items="${memeNames}">
+    <c:forEach var="meme" items="${memes}">
         <tr>
             <td>${meme}</td>
         </tr>

@@ -13,19 +13,17 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @NodeEntity
 public class Meme {
     @GraphId
-    Long id;
+    private Long id;
     
     @NotNull
     @NotBlank
     @Indexed(unique=true) 
-    String name;
+    private String name;
 
     @NotNull
     @NotBlank
-    URL url;
+    private URL url;
 
-    Meme source;
-    Meme inspiredBy;
 
     MemeMedium medium;
     DateTime firstAppearance;
@@ -38,6 +36,30 @@ public class Meme {
         this.medium = medium;
         this.url = url;
         this.firstAppearance = firstAppeance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
     }
 
     @Override
