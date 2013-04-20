@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">OIDB Spike</a>
+                    <a class="brand" href="#">Near Earth Objects</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
@@ -99,7 +99,7 @@
             <hr>
 
             <footer>
-                <p>&copy; Company 2012</p>
+                <p>Some note</p>
             </footer>
 
         </div> <!-- /container -->

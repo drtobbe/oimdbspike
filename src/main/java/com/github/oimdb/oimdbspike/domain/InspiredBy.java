@@ -8,6 +8,8 @@ import org.springframework.data.neo4j.annotation.StartNode;
 @RelationshipEntity
 public class InspiredBy {
 	@GraphId Long id;
-	@StartNode Meme source;
-	@EndNode Meme inspiration;
+	@StartNode
+    Observation source;
+	@EndNode
+    Observation inspiration;
 }

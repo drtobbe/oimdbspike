@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">OIDB Spike</a>
+                    <a class="brand" href="#">Near Earth Objects (are closer than they appear)</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
@@ -70,19 +70,36 @@
 
         <div class="container">
 
-           <form method="POST" action="inputpost">
-           <p>Meme name</p>
-               <input id="memenameid" name="memename" type="text"/>
-               <input id="memeurlid" name="memeurl" type="text"/>
-           <input type="submit">
+           <form method="POST" action="addobservation">
+           <p>Observation</p>
+
+               <div class="well">
+                   <p>Lat</p>
+                   <input id="lat" name="lat" type="text"/>
+                   <p>Long</p>
+                   <input id="lng" name="lng" type="text"/>
+                   <p>DateTime</p>
+
+                   <div id="datetimepicker1" class="input-append date">
+                      <input id="date" name="date" data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+                   </div>
+               </div>
+
+
+
+               <input type="submit">
            </form>
 
             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
             <table>
-                <c:forEach items="${memes}" var="meme">
+                <c:forEach items="${observations}" var="observation">
                     <tr>
-                        <td><a href="${meme.url}"/>${meme.name}</a></td>
+                        <td><${observation}</td>
                     </tr>
                 </c:forEach>
             </table>
@@ -100,12 +117,13 @@
         <script src="/js/vendor/bootstrap.min.js"></script>
 
         <script src="/js/main.js"></script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+        <script src="/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#datetimepicker1').datetimepicker({
+                    language: 'en-US'
+                });
+            });
         </script>
     </body>
 </html>
