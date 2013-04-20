@@ -81,7 +81,7 @@
                    <p>DateTime</p>
 
                    <div id="datetimepicker1" class="input-append date">
-                      <input id="date" name="date" data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                      <input id="date" name="date" data-format="dd/MM/yyyy HH:mm:ss" type="text"></input>
                     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
@@ -96,10 +96,15 @@
 
             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-            <table>
+
+            <table class="table">
                 <c:forEach items="${observations}" var="observation">
                     <tr>
-                        <td><${observation}</td>
+                        <td>${observation.id}</td>
+                        <td>${observation.lattitude}</td>
+                        <td>${observation.longitude}</td>
+                        <td>${observation.dateOfObservation}</td>
+
                     </tr>
                 </c:forEach>
             </table>

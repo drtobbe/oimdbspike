@@ -1,7 +1,10 @@
 package com.github.oimdb.oimdbspike.domain;
 
 import java.net.URL;
+import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -9,6 +12,8 @@ import org.joda.time.DateTime;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+import sun.awt.EmbeddedFrame;
 
 @NodeEntity
 public class Observation {
@@ -24,14 +29,17 @@ public class Observation {
 
     private double altitude;
 
-
-    DateTime dateOfObservation;
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(style = "S-")
+    Date dateOfObservation;
     
     public Observation() {
     }
 
-    public Observation(Double lang, Double lat, ObservationType medium, DateTime firstAppeance) {
-        this.dateOfObservation = firstAppeance;
+    public Observation(Double lng, Double lat, ObservationType medium, Date dateOfObservation) {
+        this.lattitude = lng;
+        this.longitude = lat;
+        this.dateOfObservation = dateOfObservation;
     }
 
     public Long getId() {
@@ -77,11 +85,11 @@ public class Observation {
         this.altitude = altitude;
     }
 
-    public DateTime getDateOfObservation() {
+    public Date getDateOfObservation() {
         return dateOfObservation;
     }
 
-    public void setDateOfObservation(DateTime dateOfObservation) {
+    public void setDateOfObservation(Date dateOfObservation) {
         this.dateOfObservation = dateOfObservation;
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.joda.time.format.DateTimeFormat;
 
 @Controller
 public class MainController {
@@ -33,8 +34,8 @@ public class MainController {
   public String inputPost ( @RequestParam("lat") Double lat,
                             @RequestParam("lng") Double lng,
                             @RequestParam("date") String date, Model model) throws MalformedURLException {
-
-	  Observation observation = new Observation(lat, lng, ObservationType.HIRES_CAMERA , new DateTime());
+      DateTime dateTime = DateTime.parse(date, DateTimeFormat.forPattern("dd/MM/yyyy hh:mm:ss"));
+	  Observation observation = new Observation(lat, lng, ObservationType.HIRES_CAMERA , dateTime.toDate());
 	  observationRepository.save(observation);
 	  return "redirect:/"; // renders /WEB-INF/views/hello.jsp
   }
