@@ -78,6 +78,16 @@
                    <input id="lat" name="lat" type="text"/>
                    <p>Long</p>
                    <input id="lng" name="lng" type="text"/>
+
+                   <p>Altitude</p>
+                   <input id="altitude" name="altitude" type="text"/>
+
+                   <p>Direction</p>
+                   <input id="direction" name="direction" type="text"/>
+
+                   <p>ViewAngle</p>
+                   <input id="angle" name="angle" type="text"/>
+
                    <p>DateTime</p>
 
                    <div id="datetimepicker1" class="input-append date">
@@ -103,6 +113,9 @@
                         <td>${observation.id}</td>
                         <td>${observation.lattitude}</td>
                         <td>${observation.longitude}</td>
+                        <td>${observation.altitude}</td>
+                        <td>${observation.direction}</td>
+                        <td>${observation.viewAngle}</td>
                         <td>${observation.dateOfObservation}</td>
 
                     </tr>

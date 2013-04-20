@@ -33,9 +33,12 @@ public class MainController {
   @RequestMapping(value="/addobservation", method=RequestMethod.POST)
   public String inputPost ( @RequestParam("lat") Double lat,
                             @RequestParam("lng") Double lng,
+                            @RequestParam("altitude") Double altitude,
+                            @RequestParam("direction") Double direction,
+                            @RequestParam("angle") Double angle,
                             @RequestParam("date") String date, Model model) throws MalformedURLException {
       DateTime dateTime = DateTime.parse(date, DateTimeFormat.forPattern("dd/MM/yyyy hh:mm:ss"));
-	  Observation observation = new Observation(lat, lng, ObservationType.HIRES_CAMERA , dateTime.toDate());
+	  Observation observation = new Observation(lat, lng, ObservationType.HIRES_CAMERA , altitude, direction, angle);
 	  observationRepository.save(observation);
 	  return "redirect:/"; // renders /WEB-INF/views/hello.jsp
   }

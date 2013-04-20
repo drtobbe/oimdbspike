@@ -20,5 +20,4 @@ public class Neo4jConfig extends Neo4jConfiguration {
 		  SpringRestGraphDatabase sgdb = new SpringRestGraphDatabase("http://localhost:7474/db/data");
 		  return sgdb;
 	  }
-	
 }
