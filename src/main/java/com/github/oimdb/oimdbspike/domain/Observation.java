@@ -1,6 +1,7 @@
 package com.github.oimdb.oimdbspike.domain;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -8,7 +9,6 @@ import javax.validation.constraints.NotNull;
 
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,7 +17,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Observation {
     @GraphId
     private Long id;
-    
+
+    @NotNull
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Sighting> getSightings() {
+        return sightings;
+    }
+
+    public void setSightings(Set<Sighting> sightings) {
+        this.sightings = sightings;
+    }
+
     @NotNull
     private double lattitude;
 
@@ -39,8 +58,8 @@ public class Observation {
     @DateTimeFormat(style = "S-")
     Date dateOfObservation;
 
-    //@RelatedTo(type= "HAS_SIGHTINGS", direction = Direction.OUTGOING)
-    //java.util.Set<Sighting> sightings;
+    @RelatedTo(type= "HAS_SIGHTINGS", direction = Direction.OUTGOING)
+    java.util.Set<Sighting> sightings;
 
     public Observation() {
     }
@@ -65,11 +84,12 @@ public class Observation {
         this.viewAngle = viewAngle;
     }
 
-    public Observation(Double lng, Double lat, ObservationType medium, double altitude, double direction, double viewAngle  ) {
+    public Observation(Double lng, Double lat, ObservationType medium, double altitude, double direction, double viewAngle , String name ) {
         this.lattitude = lng;
         this.longitude = lat;
         this.direction = direction;
         this.viewAngle = viewAngle;
+        this.name = name;
     }
 
     public Long getId() {

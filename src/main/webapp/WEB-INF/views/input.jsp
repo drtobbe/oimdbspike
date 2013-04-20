@@ -74,6 +74,9 @@
            <p>Observation</p>
 
                <div class="well">
+                   <p>Common Name</p>
+                   <input id="name" name="name" type="text"/>
+
                    <p>Lat</p>
                    <input id="lat" name="lat" type="text"/>
                    <p>Long</p>
@@ -88,16 +91,10 @@
                    <p>ViewAngle</p>
                    <input id="angle" name="angle" type="text"/>
 
-                   <p>DateTime</p>
+                   <div id="earth_div" style="width:600px;height:400px;border:1px solid gray; padding:2px;">
 
-                   <div id="datetimepicker1" class="input-append date">
-                      <input id="date" name="date" data-format="dd/MM/yyyy HH:mm:ss" type="text"></input>
-                    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-                   </div>
                </div>
+
 
 
 
@@ -117,7 +114,7 @@
                         <td>${observation.direction}</td>
                         <td>${observation.viewAngle}</td>
                         <td>${observation.dateOfObservation}</td>
-
+                        <td><a href="">Add Sighting</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -135,13 +132,17 @@
         <script src="/js/vendor/bootstrap.min.js"></script>
 
         <script src="/js/main.js"></script>
-        <script src="/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $('#datetimepicker1').datetimepicker({
-                    language: 'en-US'
-                });
-            });
+        <script src="http://www.webglearth.com/api.js"></script>
+        <script>
+            function initialize() {
+                var options = { zoom: 3.0, position: [47.19537,8.524404] };
+                var earth = new WebGLEarth('earth_div', options);
+            }
         </script>
+
+        <script>
+            window.onload=function(){initialize();};
+        </script>
+
     </body>
 </html>
